@@ -86,6 +86,6 @@ app.get('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/player', (r
     }
 })
 
-app.listen("http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com/", () => {
+app.listen(4000, () => {
   console.log(`Listening on 4000`)
 })
