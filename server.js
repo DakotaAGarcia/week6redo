@@ -2,9 +2,9 @@ const express = require('express')
 const app = express()
 const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
-
+const cors = require('cors')
 app.use(express.json())
-
+app.use(cors())
 app.use(express.static(`${__dirname}/public`))
 
 
