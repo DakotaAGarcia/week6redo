@@ -4,7 +4,7 @@ const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
 const cors = require('cors')
 app.use(express.json())
-app.use(cors())
+app.use(cors)
 app.use(express.static(`${__dirname}/public`))
 
 
@@ -20,7 +20,7 @@ var rollbar = new Rollbar({
 rollbar.log('Hello world!')
 
 
-app.get('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/robots', (req, res) => {
+app.get('/api/robots', (req, res) => {
     try {
         rollbar.info('bots sent')
         res.status(200).send(bots)
@@ -31,7 +31,7 @@ app.get('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/robots', (r
     }
 })
 
-app.get('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/robots/five', (req, res) => {
+app.get('/api/robots/five', (req, res) => {
     try {
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
@@ -43,7 +43,7 @@ app.get('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/robots/five
     }
 })
 
-app.post('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/duel', (req, res) => {
+app.post('/api/duel', (req, res) => {
     try {
         // getting the duos from the front end
         let {compDuo, playerDuo} = req.body
@@ -76,7 +76,7 @@ app.post('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/duel', (re
     }
 })
 
-app.get('http://ec2-52-32-0-124.us-west-2.compute.amazonaws.com//api/player', (req, res) => {
+app.get('/api/player', (req, res) => {
     try {
         res.status(200).send(playerRecord)
     } catch (error) {
